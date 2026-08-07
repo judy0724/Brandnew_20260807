@@ -3,8 +3,8 @@
     --bg-color: #0d0c0b;
     --bg-darker: #080807;
     --card-bg: #141311;
-    --text-main: #ffffff; /* 純白，維持最高對比 */
-    --text-muted: #e6e6e6; /* 【優化】將次要文字大幅調亮，減輕眼睛辨識負擔 */
+    --text-main: #ffffff; 
+    --text-muted: #e6e6e6; 
     --gold: #c5a059;
     --gold-light: #e5c158;
     --badge-bg: #803030;
@@ -15,16 +15,17 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
-    font-size: 18px; /* 電腦版基礎字級 */
+    font-size: 18px; 
 }
 
 body {
     font-family: var(--font-serif);
     background-color: var(--bg-color);
     color: var(--text-main);
-    line-height: 1.8; /* 【優化】增加全局行距，閱讀更舒適 */
+    line-height: 1.8; 
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    padding-top: 85px; /* 預留頂部固定導覽列的空間，避免內容被遮擋 */
 }
 
 a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
@@ -51,7 +52,7 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
 .header {
     position: fixed;
     top: 0; left: 0; width: 100%;
-    background-color: rgba(13, 12, 11, 0.95);
+    background-color: rgba(13, 12, 11, 0.98);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(197, 160, 89, 0.3);
     z-index: 1000;
@@ -61,28 +62,21 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.brand-logo {
-    display: inline-flex;
-    align-items: center;
-    flex: 0 0 auto;
-    line-height: 0;
-}
 .brand-logo img {
     display: block;
-    width: 3.75rem;
-    height: 3.75rem;
+    width: 70px;  /* 電腦版 Logo 清晰大尺寸 */
+    height: 70px;
     object-fit: contain;
     filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.4));
-    transition: transform 0.25s ease, filter 0.25s ease;
+    transition: transform 0.25s ease;
 }
 .brand-logo:hover img {
     transform: scale(1.04);
-    filter: drop-shadow(0 4px 10px rgba(197, 160, 89, 0.25));
 }
 
 .nav-menu { display: flex; gap: 2.5rem; }
@@ -103,7 +97,7 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     flex-direction: column;
     gap: 6px;
     z-index: 1001;
-    padding: 10px; /* 【優化】加大按鈕觸控範圍 */
+    padding: 10px; 
 }
 .nav-toggle span {
     display: block; width: 30px; height: 3px;
@@ -120,6 +114,7 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     justify-content: center;
     text-align: center;
     background: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80') center/cover no-repeat;
+    margin-top: -85px; /* 讓背景圖完美貼齊頂部導覽列 */
 }
 .hero-overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -275,7 +270,7 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     font-size: 1.4rem;
     font-weight: 700;
     display: inline-block;
-    padding: 5px; /* 【優化】加大點擊範圍 */
+    padding: 5px; 
 }
 
 /* Footer */
@@ -286,20 +281,40 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     text-align: center;
 }
 .footer-logo { display: inline-flex; margin-bottom: 1rem; }
-.footer-logo img { width: 5rem; height: 5rem; }
+.footer-logo img { 
+    width: 90px; 
+    height: 90px; 
+    object-fit: contain;
+}
 .copyright { font-family: var(--font-sans); font-size: 1.1rem; color: var(--text-muted); margin-bottom: 0.3rem; }
 .designer { font-family: var(--font-sans); font-size: 1rem; color: #888; }
 
 /* =========================================
-   Mobile Responsive - 手機版清晰度極致優化
+   Mobile Responsive - 手機版完美適配
    ========================================= */
 @media (max-width: 768px) {
     html {
-        font-size: 21px; /* 【優化】強制提升手機版基礎字級，等比放大所有 rem 單位 */
+        font-size: 20px; 
     }
     
-    .brand-logo img { width: 3.5rem; height: 3.5rem; }
-    .footer-logo img { width: 4.5rem; height: 4.5rem; }
+    body {
+        padding-top: 70px; /* 手機版導覽列高度對應 */
+    }
+    
+    .hero {
+        margin-top: -70px;
+    }
+    
+    .brand-logo img { 
+        width: 55px;  /* 手機版 Logo 放大且清晰，完美貼合導覽列不破版 */
+        height: 55px; 
+    }
+    
+    .footer-logo img { 
+        width: 80px; 
+        height: 80px; 
+    }
+    
     .nav-toggle { display: flex; }
     
     .nav-menu {
@@ -319,8 +334,8 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
         border-bottom: 2px solid rgba(197, 160, 89, 0.4); 
     }
     .nav-menu a {
-        font-size: 1.35rem; /* 【優化】手機選單文字再放大 */
-        padding: 1rem 0; /* 加大手指點擊範圍 */
+        font-size: 1.35rem; 
+        padding: 1rem 0; 
         width: 100%;
         text-align: center;
     }
@@ -330,10 +345,10 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     .hero h1 { font-size: 2.3rem; }
     .hero-desc { font-size: 1.25rem; }
     
-    /* Menu Mobile Adjustments - 解決過度擁擠並保持字體清晰 */
+    /* Menu Mobile Adjustments */
     .menu-item {
         flex-direction: column;
-        align-items: flex-start; /* 【優化】文字靠左對齊，符合標準閱讀動線 */
+        align-items: flex-start; 
         gap: 0.8rem;
         padding-bottom: 2.5rem; 
         border-bottom: 1px solid rgba(197, 160, 89, 0.2);
@@ -348,10 +363,10 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     }
     .menu-info p {
         font-size: 1.15rem; 
-        color: #f0f0f0; /* 【優化】手機版配料文字特別調亮 */
+        color: #f0f0f0; 
     }
     .menu-price { 
-        align-self: flex-start; /* 【優化】價格靠左，不用眼睛找 */
+        align-self: flex-start; 
         font-size: 1.6rem; 
         background: rgba(197, 160, 89, 0.15); 
         padding: 6px 16px;
