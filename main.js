@@ -1,22 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Navigation Toggle
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const mobileMedia = window.matchMedia('(max-width: 768px)');
+
+    if (!navToggle || !navMenu) return;
+
+    const setMenuState = (isOpen) => {
+        navMenu.classList.toggle('active', isOpen);
+        navToggle.classList.toggle('active', isOpen);
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('nav-open', isOpen && mobileMedia.matches);
+    };
 
     navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        
-        // Animate hamburger to X (simple implementation)
-        const spans = navToggle.querySelectorAll('span');
-        if (navMenu.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
-        } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        }
+        setMenuState(!navMenu.classList.contains('active'));
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) setMenuState(false);
+    });
+
+    mobileMedia.addEventListener('change', (event) => {
+        if (!event.matches) setMenuState(false);
     });
 
     // Smooth Scrolling for anchor links
@@ -26,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Close mobile menu if open
             if (navMenu.classList.contains('active')) {
-                navToggle.click();
+                setMenuState(false);
             }
             
             const targetId = this.getAttribute('href');

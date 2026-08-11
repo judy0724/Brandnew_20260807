@@ -316,22 +316,45 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
     }
     
     .nav-toggle { display: flex; }
-    
+
+    /*
+       Keep the phone menu out of normal document flow.  The former
+       max-height approach inherited the desktop flex gap and could leave a
+       second-looking horizontal navigation strip beneath an expanded menu.
+    */
     .nav-menu {
+        /* `backdrop-filter` on .header creates a containing block, so fixed
+           positioning here would be constrained to the 70px header. */
         position: absolute;
-        top: 100%; left: 0; width: 100%;
-        background-color: rgba(13, 12, 11, 0.98);
+        top: 70px;
+        right: 0;
+        left: 0;
+        height: calc(100vh - 70px);
+        height: calc(100dvh - 70px);
+        z-index: 999;
+        display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease;
+        justify-content: flex-start;
+        gap: 0.25rem;
+        padding: 1.25rem 1.5rem;
+        overflow-y: auto;
+        background-color: rgba(13, 12, 11, 0.98);
+        border-bottom: 2px solid rgba(197, 160, 89, 0.4);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-0.75rem);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
-    .nav-menu.active { 
-        max-height: 350px; 
-        padding: 1.5rem 0; 
-        border-bottom: 2px solid rgba(197, 160, 89, 0.4); 
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        transition-delay: 0s;
     }
     .nav-menu a {
         font-size: 1.2rem; 
@@ -339,6 +362,11 @@ h1, h2, h3, h4 { font-weight: normal; color: #ffffff; letter-spacing: 1.5px; }
         width: 100%;
         text-align: center;
     }
+
+    .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+    body.nav-open { overflow: hidden; }
     
     .section { padding: 3.5rem 0; }
     
