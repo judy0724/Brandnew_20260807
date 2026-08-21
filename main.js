@@ -1,53 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    const mobileMedia = window.matchMedia('(max-width: 768px)');
+    const desktopQuery = window.matchMedia('(min-width: 769px)');
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    if (!navToggle || !navMenu) return;
+    const setMenuState = (isOpen, returnFocus = false) => {
+        if (!navToggle || !navMenu) return;
 
-    const setMenuState = (isOpen) => {
         navMenu.classList.toggle('active', isOpen);
-        navToggle.classList.toggle('active', isOpen);
+        navToggle.classList.toggle('is-open', isOpen);
         navToggle.setAttribute('aria-expanded', String(isOpen));
-        document.body.classList.toggle('nav-open', isOpen && mobileMedia.matches);
+        navToggle.setAttribute('aria-label', isOpen ? '關閉導覽選單' : '開啟導覽選單');
+        document.body.classList.toggle('nav-open', isOpen);
+
+        if (isOpen) {
+            const firstLink = navMenu.querySelector('a');
+            window.setTimeout(() => firstLink?.focus(), 80);
+        } else if (returnFocus) {
+            navToggle.focus();
+        }
     };
 
-    navToggle.addEventListener('click', () => {
-        setMenuState(!navMenu.classList.contains('active'));
-    });
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            const isOpen = navToggle.getAttribute('aria-expanded') !== 'true';
+            setMenuState(isOpen);
+        });
 
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && navMenu.classList.contains('active')) setMenuState(false);
-    });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+                setMenuState(false, true);
+            }
+        });
 
-    mobileMedia.addEventListener('change', (event) => {
-        if (!event.matches) setMenuState(false);
-    });
-
-    // Smooth Scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            // Close mobile menu if open
-            if (navMenu.classList.contains('active')) {
+        navMenu.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
                 setMenuState(false);
             }
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Adjust for fixed header height
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+        });
+
+        desktopQuery.addEventListener('change', (event) => {
+            if (event.matches) setMenuState(false);
+        });
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (event) => {
+            const targetId = anchor.getAttribute('href');
+            if (!targetId || targetId === '#') return;
+
+            const target = document.querySelector(targetId);
+            if (!target) return;
+
+            event.preventDefault();
+            target.scrollIntoView({
+                behavior: reducedMotionQuery.matches ? 'auto' : 'smooth',
+                block: 'start'
+            });
+
+            if (history.replaceState) {
+                history.replaceState(null, '', targetId);
             }
         });
     });
+
+    const currentYear = document.querySelector('#current-year');
+    if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 });

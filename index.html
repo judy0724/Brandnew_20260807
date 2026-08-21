@@ -1,22 +1,60 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRAND NEW STEAKHOUSE | 頂級美式牛排西餐廳</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="BRAND NEW Grill Lab & Wine，台北東區美式牛排與炭火料理。2026 年 9 月 23 日試營運，歡迎來電訂位。">
+    <meta name="theme-color" content="#0b0908">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://judy0724.github.io/Brandnew_20260807/">
+    <meta property="og:type" content="restaurant.restaurant">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:title" content="BRAND NEW Grill Lab & Wine｜台北東區牛排餐廳">
+    <meta property="og:description" content="以火候、時間與好食材，招待每一個認真生活的人。9 月 23 日試營運。">
+    <meta property="og:url" content="https://judy0724.github.io/Brandnew_20260807/">
+    <meta property="og:image" content="https://judy0724.github.io/Brandnew_20260807/logo.png">
+    <meta property="og:image:alt" content="BRAND NEW Grill Lab & Wine 品牌標誌">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>BRAND NEW Grill Lab & Wine｜台北東區牛排餐廳</title>
+
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="hero-steak.jpg" as="image" fetchpriority="high">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "BRAND NEW Grill Lab & Wine",
+        "url": "https://judy0724.github.io/Brandnew_20260807/",
+        "image": "https://judy0724.github.io/Brandnew_20260807/logo.png",
+        "telephone": "+886-2-2771-6621",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "安東街52-1號",
+            "addressLocality": "大安區",
+            "addressRegion": "台北市",
+            "addressCountry": "TW"
+        },
+        "servesCuisine": ["美式牛排", "炭火料理"]
+    }
+    </script>
 </head>
 <body>
-    <header class="header">
+    <a class="skip-link" href="#main-content">跳至主要內容</a>
+
+    <header class="header" id="site-header">
         <div class="header-container">
-            <a href="#home" class="brand-logo" aria-label="BRAND NEW STEAKHOUSE 首頁">
-                <img src="logo.png" alt="BRAND NEW 官方 Logo">
+            <a href="#home" class="brand-logo" aria-label="BRAND NEW 首頁">
+                <img src="logo.png" width="512" height="512" alt="BRAND NEW Grill Lab & Wine Logo">
             </a>
-            <button class="nav-toggle" aria-label="切換選單">
+            <button class="nav-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="main-navigation">
                 <span></span><span></span><span></span>
             </button>
-            <nav class="nav-menu">
+            <nav class="nav-menu" id="main-navigation" aria-label="主要導覽">
                 <a href="#home">首頁</a>
                 <a href="#about">品牌理念</a>
                 <a href="#menu">經典排餐</a>
@@ -25,46 +63,56 @@
         </div>
     </header>
 
-    <main>
-        <section id="home" class="hero">
+    <main id="main-content">
+        <section id="home" class="hero" aria-labelledby="hero-title">
+            <img class="hero-media" src="hero-steak.jpg" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
             <div class="hero-overlay"></div>
             <div class="hero-content">
+                <p class="launch-pill"><span aria-hidden="true"></span>2026.09.23 試營運</p>
                 <p class="eyebrow">TAIPEI · DONGQU</p>
-                <h1>讓一席晚餐<br>成為值得等待的事。</h1>
+                <h1 id="hero-title">讓一席晚餐<br>成為值得等待的事。</h1>
                 <p class="hero-desc">以火候、時間與好食材，招待每一個認真生活的人。</p>
-                <a href="#visit" class="btn">預約品味</a>
+                <div class="hero-actions">
+                    <a href="tel:0227716621" class="btn btn-primary" aria-label="致電 02-2771-6621 訂位">立即致電訂位</a>
+                    <a href="#visit" class="btn btn-secondary">查看來訪資訊</a>
+                </div>
+            </div>
+            <a class="scroll-cue" href="#about" aria-label="前往品牌理念">
+                <span>SCROLL</span>
+                <i aria-hidden="true"></i>
+            </a>
+        </section>
+
+        <section id="about" class="section about-section" aria-labelledby="about-title">
+            <div class="container text-center narrow">
+                <p class="section-kicker">OUR PHILOSOPHY</p>
+                <h2 class="section-title" id="about-title">為相聚，留一點餘裕。</h2>
+                <p class="section-text">我們相信，一間好的牛排館，不是把華麗堆在盤上，而是讓食材、火候與人的心意，各自在恰當的位置。</p>
+                <p class="section-text">BRAND NEW 將以美式牛排館的自在精神，為台北東區留下一張可以好好吃飯、好好說話的餐桌。</p>
             </div>
         </section>
 
-        <section id="about" class="section">
-            <div class="container text-center">
-                <h2 class="section-title">為相聚，留一點餘裕。</h2>
-                <p class="section-text">我們相信，一間好的牛排館，不是把華麗堆在盤上，而是讓食材、火候與人的心意各自在恰當的位置。<br><br>BRAND NEW 將以美式牛排館的自在精神，為台北東區留下一張可以好好吃飯、好好說話的餐桌。</p>
-            </div>
-        </section>
-
-        <section id="menu" class="section bg-darker">
+        <section id="menu" class="section menu-section" aria-labelledby="menu-title">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">經典排餐 <span class="title-en">SIGNATURE GRILL</span></h2>
-                    <p class="section-text text-sm">極致火烤技術與頂級海陸食材的完美交響樂</p>
+                    <p class="section-kicker">SIGNATURE GRILL</p>
+                    <h2 class="section-title" id="menu-title">經典排餐</h2>
+                    <p class="section-text text-sm">以火烤技術與精選海陸食材，呈現清楚而有層次的風味。</p>
                 </div>
-                
+
                 <div class="menu-list">
-                    <!-- Menu Item 1 -->
-                    <div class="menu-item">
+                    <article class="menu-item">
                         <div class="menu-info">
                             <div class="menu-name-wrapper">
                                 <h3>碳烤究好豬肋排</h3>
                             </div>
                             <p>Pickled Ginger Cherry Sauce / Crispy Quinoa</p>
                         </div>
-                        <div class="menu-dots"></div>
-                        <div class="menu-price">$980</div>
-                    </div>
-                    
-                    <!-- Menu Item 2 -->
-                    <div class="menu-item">
+                        <div class="menu-dots" aria-hidden="true"></div>
+                        <div class="menu-price"><span class="sr-only">價格</span>$980</div>
+                    </article>
+
+                    <article class="menu-item">
                         <div class="menu-info">
                             <div class="menu-name-wrapper">
                                 <h3>碳烤紐西蘭 Lumina 羊臀肉</h3>
@@ -72,12 +120,11 @@
                             </div>
                             <p>Sambal Chili Sauce / Cabbage</p>
                         </div>
-                        <div class="menu-dots"></div>
-                        <div class="menu-price">$1,280</div>
-                    </div>
-                    
-                    <!-- Menu Item 3 -->
-                    <div class="menu-item">
+                        <div class="menu-dots" aria-hidden="true"></div>
+                        <div class="menu-price"><span class="sr-only">價格</span>$1,280</div>
+                    </article>
+
+                    <article class="menu-item">
                         <div class="menu-info">
                             <div class="menu-name-wrapper">
                                 <h3>碳烤和牛紐約客牛排</h3>
@@ -85,32 +132,36 @@
                             </div>
                             <p>Bourbon Whisky / Green Pepper Sauce / Pickled Green Papaya</p>
                         </div>
-                        <div class="menu-dots"></div>
-                        <div class="menu-price">$1,680</div>
-                    </div>
+                        <div class="menu-dots" aria-hidden="true"></div>
+                        <div class="menu-price"><span class="sr-only">價格</span>$1,680</div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="visit" class="section">
+        <section id="visit" class="section visit-section" aria-labelledby="visit-title">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-title">來訪資訊</h2>
-                    <p class="section-text">正式開幕與訂位方式將陸續公告，歡迎直接來電洽詢。</p>
+                    <p class="section-kicker">VISIT US</p>
+                    <h2 class="section-title" id="visit-title">來訪資訊</h2>
+                    <p class="section-text">9 月 23 日起試營運。座位有限，建議來訪前先來電確認。</p>
                 </div>
                 <div class="info-grid">
-                    <div class="info-card">
-                        <h4>地址</h4>
+                    <article class="info-card">
+                        <span class="info-index" aria-hidden="true">01</span>
+                        <h3>地址</h3>
                         <p>台北市大安區安東街52-1號</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>營業時間</h4>
-                        <p>17:30 – 24:00</p>
-                    </div>
-                    <div class="info-card">
-                        <h4>訂位專線</h4>
-                        <a href="tel:02-27716621" class="text-gold phone-link">02-27716621</a>
-                    </div>
+                    </article>
+                    <article class="info-card">
+                        <span class="info-index" aria-hidden="true">02</span>
+                        <h3>營業時間</h3>
+                        <p><time datetime="17:30">17:30</time> – <time datetime="24:00">24:00</time></p>
+                    </article>
+                    <article class="info-card info-card-accent">
+                        <span class="info-index" aria-hidden="true">03</span>
+                        <h3>訂位專線</h3>
+                        <a href="tel:0227716621" class="phone-link" aria-label="致電 02-2771-6621">02-2771-6621</a>
+                    </article>
                 </div>
             </div>
         </section>
@@ -119,15 +170,15 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <a href="#home" class="brand-logo footer-logo" aria-label="BRAND NEW STEAKHOUSE 首頁">
-                    <img src="logo.png" alt="BRAND NEW 官方 Logo">
+                <a href="#home" class="brand-logo footer-logo" aria-label="BRAND NEW 首頁">
+                    <img src="logo.png" width="512" height="512" loading="lazy" decoding="async" alt="BRAND NEW Grill Lab & Wine Logo">
                 </a>
-                <p class="copyright">&copy; 2026 BRAND NEW STEAKHOUSE.</p>
+                <p class="copyright">&copy; <span id="current-year">2026</span> BRAND NEW Grill Lab & Wine.</p>
                 <p class="designer">Designed by Brandnew</p>
             </div>
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
